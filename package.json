@@ -15,7 +15,7 @@
   "dependencies": {
     "bootstrap-vue-3": "^0.0.5",
     "core-js": "^3.6.5",
-    "torrentproperty": "^1.7.9",
+    "torrentproperty": "^1.8.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {

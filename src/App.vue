@@ -58,7 +58,6 @@
         <p v-for="(data, i) in torrent.stuff" :key="i">{{data}}</p>
       </div>
       <p><button @click="remove(torrent.address)">remove</button></p>
-      <p v-if="torrent.error">{{torrent.error}}</p>
     </div>
     </div>
   </div>
@@ -255,12 +254,10 @@ export default {
     })
     ipcRenderer.on('publish', (event, data) => {
       data.res.show = true
-      data.res.alt = false
       torProps.value.splice(torProps.value.indexOf(data.main), 1, data.res)
     })
     ipcRenderer.on('resolve', (event, data) => {
       data.res.show = true
-      data.res.alt = false
       torProps.value.splice(torProps.value.indexOf(data.main), 1, data.res)
     })
     ipcRenderer.on('remove', (event, data) => {
