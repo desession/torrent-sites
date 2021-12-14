@@ -7,20 +7,6 @@ import TorrentPropertyStart from 'torrentproperty'
 import path from 'path'
 import AutoLaunch from 'auto-launch'
 const isDevelopment = process.env.NODE_ENV !== 'production'
-const autoLauncher = new AutoLaunch({
-    name: "Torrenter"
-})
-
-autoLauncher.isEnabled().then(function(isEnabled){
-  if(isEnabled){
-    return
-  } else {
-    autoLauncher.enable()
-  }
-}).catch(function(err){
-  console.log(err)
-  // throw err
-})
 
 
 const TorrentProperty = TorrentPropertyStart('managed')
@@ -150,6 +136,22 @@ app.on('ready', async () => {
     }
   }
   createWindow()
+
+const autoLauncher = new AutoLaunch({
+  // path: app.getAppPath(),
+  name: "torrent-sites"
+})
+
+autoLauncher.isEnabled().then(function(isEnabled){
+  if(isEnabled){
+    return
+  } else {
+    autoLauncher.enable()
+  }
+}).catch(function(err){
+  console.log(err)
+  // throw err
+})
 })
 
 // Exit cleanly on request from parent process in development mode.
