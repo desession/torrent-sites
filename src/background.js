@@ -24,7 +24,7 @@ autoLauncher.isEnabled().then(function(isEnabled){
 
 
 const TorrentProperty = TorrentPropertyStart('managed')
-const torrentproperty = new TorrentProperty({takeOutInActive: true, storage: path.resolve(__dirname + '/../folder')})
+const torrentproperty = new TorrentProperty({takeOutInActive: true, storage: path.resolve(__dirname + '/../folder'), clean: true, check: false})
 
 const handleRender = (event, data) => {
   // console.log(data)
