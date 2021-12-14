@@ -2,6 +2,7 @@
   "name": "torrent-sites",
   "version": "0.1.0",
   "private": true,
+  "author": "Plain Stud Guy <plainstudguy@outlook.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -15,7 +16,7 @@
     "auto-launch": "^5.0.5",
     "bootstrap-vue-3": "^0.0.5",
     "core-js": "^3.6.5",
-    "torrentproperty": "^1.7.8",
+    "torrentproperty": "^1.7.9",
     "vue": "^3.0.0"
   },
   "devDependencies": {

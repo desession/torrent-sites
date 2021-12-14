@@ -2,11 +2,11 @@
   <div>
     <p>Torrent Sites</p>
 <div v-if="checked">
-  <p v-if="checked.status">ready, if you don't see all your torrent sites, wait some minutes, it takes some time for them to show up</p>
+  <p v-if="checked.status">ready, wait some minutes, it takes some time for all the torrents to show up, if it does not show up, then no one might be seeding the torrent</p>
   <p v-if="!checked.status">not ready, give it a minute, doing some checks and updating everything</p>
 </div>
 <div v-if="counted">
-  <p><span v-if="counted.torrents">torrents: {{counted.torrents}}</span> | synced: {{counted.torrents === counted.properties}} | <span v-if="counted.properties">{{counted.properties}}</span></p>
+  <p><span v-if="counted.torrents">torrents: {{counted.torrents}}</span><span v-else>torrents: 0</span> | synced: {{counted.torrents === counted.properties}} | <span v-if="counted.properties">properties: {{counted.properties}}</span><span v-else>properties: 0</span></p>
 </div>
 <div>
   <form @submit.prevent="publish" style="margin: 20px auto;">
