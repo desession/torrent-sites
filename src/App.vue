@@ -33,7 +33,6 @@
 </div>
 <div v-if="torPropsPaginatedData && torPropsPaginatedData.length" id="torProps">
   <div v-for="(torrent, index) in torPropsPaginatedData" :key="index" style="margin: 30px auto;">
-    <!-- <p>address: <a :href="'magnet:?xt=urn:btih:' + torrent.infoHash">{{torrent.address}}</a></p> -->
     <div v-if="typeof(torrent) === 'string'">
       <p>{{torrent}} is loading, might take some time</p>
     </div>
@@ -46,7 +45,7 @@
         <p><button @click="delete torrent.secret">Hide Secret</button>make sure you copy it, once you hide it, it is gone</p>
       </div>
       <p>magnet: {{`magnet:?xs=urn:btpk:${torrent.address}`}}</p>
-      <p>infohash: {{torrent.infoHash}}</p>
+      <p>infohash: {{torrent.infohash}}</p>
       <p>sequence: {{torrent.sequence}}</p>
       <p>active: {{torrent.active}}</p>
       <p>signed: {{torrent.signed}}</p>
@@ -213,7 +212,7 @@ export default {
     ipcRenderer.on('removed', (event, data) => {
       let iter = null
       for(let i = 0;i < torProps.value.length;i++){
-        if(torProps.value[i].infoHash === data){
+        if(torProps.value[i].infohash === data){
           iter = i
           break
         }

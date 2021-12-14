@@ -67,7 +67,7 @@ ipcMain.on('publish', (event, data) => {
     if(error){
       event.reply('errorPub', {res: error, main: data})
     } else {
-      mainData = {address: mainData.torrent.address, infoHash: mainData.torrent.infoHash, seq: mainData.torrent.seq, active: mainData.torrent.active, magnet: mainData.torrent.magnetLink, signed: mainData.torrent.signed, folder: mainData.torrent.path + path.sep + mainData.torrent.name, name: mainData.torrent.name, path: mainData.torrent.path, secret: mainData.data.secret}
+      mainData = {address: mainData.torrent.address, infohash: mainData.torrent.infoHash, sequence: mainData.torrent.sequence, active: mainData.torrent.active, magnet: mainData.torrent.magnetLink, signed: mainData.torrent.signed, folder: mainData.torrent.path + path.sep + mainData.torrent.name, name: mainData.torrent.name, path: mainData.torrent.path, secret: mainData.data.secret}
       event.reply('publish', {res: mainData, main: data})
     }
   })
@@ -80,7 +80,7 @@ ipcMain.on('resolve', (event, data) => {
     } else {
       console.log(mainData)
       mainData = mainData.torrent
-      mainData = {address: mainData.address, infoHash: mainData.infoHash, seq: mainData.seq, active: mainData.active, name: mainData.name, folder: mainData.path + path.sep + mainData.name, signed: mainData.signed, path: mainData.path, magnet: mainData.magnetLink}
+      mainData = {address: mainData.address, infohash: mainData.infoHash, sequence: mainData.sequence, active: mainData.active, name: mainData.name, folder: mainData.path + path.sep + mainData.name, signed: mainData.signed, path: mainData.path, magnet: mainData.magnetLink}
       event.reply('resolve', {res: mainData, main: data})
     }
   })
@@ -90,7 +90,7 @@ ipcMain.on('remove', (event, data) => {
     if(error){
       event.reply('errorRem', {res: error, main: data})
     } else {
-      event.reply('remove', {res: main, main: data})
+      event.reply('remove', {res: main.torrent.address, main: data})
     }
   })
 })
@@ -105,9 +105,9 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    autoHideMenuBar: true,
+    // autoHideMenuBar: true,
     webPreferences: {
-      devTools: false,
+      // devTools: false,
       
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
