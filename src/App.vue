@@ -41,6 +41,10 @@
     <p @click="torrent.show = !torrent.show" v-if="torrent.address">address: {{torrent.address}}</p>
     <div v-if="torrent.show">
       <!-- <p>{{torrent}}</p> -->
+      <div v-if="torrent.secret">
+        <p>{{torrent.secret}}</p>
+        <p><button @click="delete torrent.secret">Hide Secret</button>make sure you copy it, once you hide it, it is gone</p>
+      </div>
       <p>magnet: {{`magnet:?xs=urn:btpk:${torrent.address}`}}</p>
       <p>infohash: {{torrent.infoHash}}</p>
       <p>sequence: {{torrent.sequence}}</p>
