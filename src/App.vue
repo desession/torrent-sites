@@ -1,9 +1,12 @@
 <template>
   <div>
     <p>Torrent Sites</p>
-<div v-if="checked">
-  <p v-if="checked.status">ready, wait some minutes, it takes some time for all the torrents to show up, if it does not show up, then no one might be seeding the torrent</p>
-  <p v-if="!checked.status">not ready, give it a minute, doing some checks and updating everything</p>
+<div v-if="typeof(checked) === 'boolean'">
+  <p v-if="checked">ready, wait some minutes, it takes some time for all the torrents to show up, if it does not show up, then no one might be seeding the torrent</p>
+  <p v-if="!checked">not ready, give it a minute, doing some checks and updating everything</p>
+</div>
+<div v-else>
+    <p>ready to go</p>
 </div>
 <div v-if="counted">
   <p><span v-if="counted.torrents">torrents: {{counted.torrents}}</span><span v-else>torrents: 0</span> | synced: {{counted.torrents === counted.properties}} | <span v-if="counted.properties">properties: {{counted.properties}}</span><span v-else>properties: 0</span></p>
@@ -129,7 +132,7 @@ export default {
     const torProps = ref([])
     const sep = ref('/')
     const counted = ref({})
-    const checked = ref({})
+    const checked = ref(null)
     const extraText = ref("")
     ipcRenderer.send('start', true)
     ipcRenderer.on('start', (event, data) => {

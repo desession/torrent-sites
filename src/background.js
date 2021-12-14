@@ -26,9 +26,7 @@ autoLauncher.isEnabled().then(function(isEnabled){
 const TorrentProperty = TorrentPropertyStart('managed')
 const torrentproperty = new TorrentProperty({takeOutInActive: true, storage: path.resolve(__dirname + '/../folder'), clean: true, check: false})
 
-const handleRender = (event, data) => {
-  // console.log(data)
-
+ipcMain.on('start', (event, data) => {
   event.reply('start', path.sep)
 
   torrentproperty.on('error', error => {
@@ -55,8 +53,7 @@ const handleRender = (event, data) => {
   torrentproperty.on('checked', data => {
     event.reply('checked', data)
   })
-}
-ipcMain.on('start', handleRender)
+})
 
 ipcMain.on('counted', (event, data) => {
   event.reply('counted', {res: {torrents: torrentproperty.webtorrent.torrents.length, properties: torrentproperty.webproperty.properties.length}, main: data})
@@ -75,10 +72,8 @@ ipcMain.on('publish', (event, data) => {
 ipcMain.on('resolve', (event, data) => {
   torrentproperty.load(data, (error, mainData) => {
     if(error){
-      console.log(error)
       event.reply('errorRes', {res: error, main: data})
     } else {
-      console.log(mainData)
       mainData = mainData.torrent
       mainData = {address: mainData.address, infohash: mainData.infoHash, sequence: mainData.sequence, active: mainData.active, name: mainData.name, folder: mainData.path + path.sep + mainData.name, signed: mainData.signed, path: mainData.path, magnet: mainData.magnetLink}
       event.reply('resolve', {res: mainData, main: data})
