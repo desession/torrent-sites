@@ -5,7 +5,6 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 import TorrentPropertyStart from 'torrentproperty'
 import path from 'path'
-import AutoLaunch from 'auto-launch'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 
@@ -136,22 +135,6 @@ app.on('ready', async () => {
     }
   }
   createWindow()
-
-const autoLauncher = new AutoLaunch({
-  // path: app.getAppPath(),
-  name: "torrent-sites"
-})
-
-autoLauncher.isEnabled().then(function(isEnabled){
-  if(isEnabled){
-    return
-  } else {
-    autoLauncher.enable()
-  }
-}).catch(function(err){
-  console.log(err)
-  // throw err
-})
 })
 
 // Exit cleanly on request from parent process in development mode.
