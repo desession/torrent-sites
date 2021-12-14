@@ -24,7 +24,7 @@ autoLauncher.isEnabled().then(function(isEnabled){
 
 
 const TorrentProperty = TorrentPropertyStart('managed')
-const torrentproperty = new TorrentProperty({takeOutInActive: true, storage: path.resolve(__dirname + '/../folder'), clean: true, check: false})
+const torrentproperty = new TorrentProperty({takeOutInActive: true, clean: true, check: false})
 
 ipcMain.on('start', (event, data) => {
   event.reply('start', path.sep)
